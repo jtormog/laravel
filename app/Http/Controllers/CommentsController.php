@@ -25,14 +25,14 @@ class CommentsController extends Controller{
         ->with("comment", session("comments")[$id]);
     }
     function edit($id){
-
-        return view("comments/edit")->with("comment", session("comments")[$id]);
+        return view("comments/edit")->with("comment", session("comments")[$id])
+        ->with('id', $id);
     }
 
     function update(Request $request, string $id){
         $commentsTMP = session('comments');
         $commentsTMP[$id] = $request->comment;
-        session()->put('comments', $commentsTMP);
+        session()->put('comments' , $commentsTMP);
         return redirect("/comments"); 
     }
 
